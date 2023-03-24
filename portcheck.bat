@@ -19,5 +19,8 @@ curl -s https://ipv4.am.i.mullvad.net/port/%Port2% | findstr "false" >nul
 IF "%errorlevel%"=="0" echo [40;37mPort : [40;33m%Port2% [40;37mis [40;31mClosed
 IF "%errorlevel%"=="1" echo [40;37mPort : [40;33m%Port2% [40;37mis [40;32mOpen
 set /A Port2=%Port2%+1
-IF "%Port2%"=="%MaxPort%" pause>nul
+IF "%Port2%"=="%MaxPort%" goto break:
 goto RapidScan2:
+:break
+pause>nul
+exit
